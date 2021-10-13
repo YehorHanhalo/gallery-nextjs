@@ -1,0 +1,13 @@
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: -20px;
+  margin-left: -20px;
+}
+
+.listItem {
+  width: calc(100% / 2 - 20px);
+  min-width: 350px;
+  margin-top: 20px;
+  margin-left: 20px;
+}
