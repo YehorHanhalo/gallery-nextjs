@@ -1,0 +1,48 @@
+.root {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+
+  & > :not(:last-child) {
+    margin-bottom: 10px;
+  }
+}
+
+.textBlock {
+  width: 100%;
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 4px;
+  font-size: medium;
+  font-weight: 400;
+}
+
+.textarea {
+  @extend .textBlock;
+  resize: none;
+}
+
+.button {
+  display: inline-block;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  width: 100%;
+
+  color: white;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.62;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+
+  border: 1px solid black;
+  border-radius: 4px;
+  background-color: #c1192f;
+
+  &:hover,
+  &:focus {
+    background-color: #d11931;
+  }
+}
