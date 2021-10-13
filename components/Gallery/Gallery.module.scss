@@ -1,0 +1,18 @@
+.root {
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.5);
+
+  & > :not(:last-child) {
+    margin-bottom: 10px;
+  }
+}
+
+.header {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.description {
+  color: grey;
+}
