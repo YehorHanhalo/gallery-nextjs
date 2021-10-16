@@ -1,13 +1,15 @@
 
 
 import { configureStore } from '@reduxjs/toolkit';
-import headerReducer from './header/header-reducer';
+import titleReducer from './title/title-reducer';
 import descriptionReducer from './description/description-reducer';
+import photoReducer from './photo/photo-reducer';
 
 export const store = configureStore({
   reducer: {
-    header: headerReducer,
+    title: titleReducer,
     description: descriptionReducer,
+    photo: photoReducer,
   },
   devTools: process.env.NODE_ENV === 'development',
 });

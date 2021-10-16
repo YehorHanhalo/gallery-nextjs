@@ -1,1 +1,0 @@
-export const getEditHeader = state => state.header.edit;
