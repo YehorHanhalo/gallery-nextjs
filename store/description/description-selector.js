@@ -1,1 +1,3 @@
-export const getEditDescription = state => state.description.edit;
+export const getDescription = state => state.description.description;
+export const getDescriptionLoading = state => state.description.loading;
+export const getDescriptionError = state => state.description.error;
