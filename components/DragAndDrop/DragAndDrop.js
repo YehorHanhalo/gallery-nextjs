@@ -1,9 +1,12 @@
 import { useState } from 'react'
 import { useSnackbar } from 'notistack'
-import API from '../../api'
+import imageCompression from 'browser-image-compression';
+import { useDispatch } from 'react-redux'
+import { postPhoto } from '../../store/photo/photo-operations'
 import styles from './DragAndDrop.module.scss'
 
-const DragAndDrop = () => {
+const DragAndDrop = ({ setPageAmount }) => {
+    const dispatch = useDispatch()
     const { enqueueSnackbar } = useSnackbar()
 
     const [drag, setDrag] = useState(false)
@@ -18,6 +21,8 @@ const DragAndDrop = () => {
         setDrag(false)
     }
 
+    const successNotification = () => enqueueSnackbar('File is uploaded', {variant: 'success'})
+
     const onDropHandler = async (e) => {
         try {
             e.preventDefault()
@@ -31,15 +36,27 @@ const DragAndDrop = () => {
                 enqueueSnackbar('load files one by one', {variant: 'info'})
             }
 
+            const options = {
+              maxSizeMB: 10,
+              maxWidthOrHeight: 600,
+              useWebWorker: true
+
+            }
+
+            const compressedFile = await imageCompression(files[0], options);
+
             const formData = new FormData()
-            formData.append('file', files[0], files[0].name)
+            formData.append('photo', compressedFile, compressedFile.name)
 
-            const result = await API.postPhoto(formData)
-
+            dispatch(postPhoto({ formData, successNotification, setPageAmount }))
         } catch (error) {
+            console.log(error.message)
             enqueueSnackbar('File is not uploaded. try again', {variant: 'error'})
         } finally {
             setDrag(false)
+            if (e.target) {
+                e.target.value = null
+            }
         }
     }
 
