@@ -1,10 +1,10 @@
 .root {
-  padding: 10px;
+  padding: 16px;
   border-radius: 4px;
   box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.5);
 
   & > :not(:last-child) {
-    margin-bottom: 10px;
+    margin-bottom: 16px;
   }
 }
 
@@ -15,4 +15,44 @@
 
 .description {
   color: grey;
+}
+
+.galleryList {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: -16px;
+  margin-left: -16px;
+}
+
+.galleryItem {
+  width: calc(100% / 3 - 16px);
+  min-width: 100px;
+  margin-top: 16px;
+  margin-left: 16px;
+}
+
+.photoItem {
+  @extend .galleryItem;
+  min-height: 100px;
+  position: relative;
+
+  &:hover::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 4px;
+    background-color: rgb(0, 0, 0, 0.5);
+    background-image: url("../../public/eye.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+
+.photo {
+  object-fit: cover;
+  border-radius: 4px;
+  height: 100px;
 }
