@@ -1,3 +1,4 @@
+require('dotenv').config();
 const path = require('path')
 
 module.exports = {
@@ -6,6 +7,6 @@ module.exports = {
     includePaths: [path.join(__dirname, 'styles')],
   },
   env: {
-    API_URL: 'http://localhost:3003',
+    API_URL: process.env.API_URL
   },
 }
