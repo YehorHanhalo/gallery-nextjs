@@ -2,8 +2,8 @@ import { useEffect } from 'react'
 import { useSnackbar } from 'notistack'
 import { DebounceInput } from 'react-debounce-input';
 import { useDispatch, useSelector } from 'react-redux'
-import { postTitle, fetchTitle } from '../../store/title/title-operations'
-import { postDescription, fetchDescription } from '../../store/description/description-operations'
+import { postTitle } from '../../store/title/title-operations'
+import { postDescription } from '../../store/description/description-operations'
 import { deleteAllPhotos } from '../../store/photo/photo-operations'
 import { getTitle, getTitleError } from '../../store/title/title-selector'
 import { getDescription, getDescriptionError } from '../../store/description/description-selector'
@@ -18,11 +18,6 @@ const UploadPhoto = ({ setPageAmount }) => {
     const titleError = useSelector(getTitleError)
     const description = useSelector(getDescription)
     const descriptionError = useSelector(getDescriptionError)
-
-    useEffect(() => {
-        dispatch(fetchTitle())
-        dispatch(fetchDescription())
-    }, [])
 
     useEffect(() => {
         const error = titleError || descriptionError

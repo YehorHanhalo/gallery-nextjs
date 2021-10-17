@@ -6,7 +6,7 @@ export const fetchPaginatedPhotos = createAsyncThunk(
   async ({ page, setPageAmount }, { rejectWithValue }) => {
     try {
         const { data } = await API.getAllPhotos(page);
-        setPageAmount(data.pages)
+        setPageAmount && setPageAmount(data.pages)
         return data.photos;
     } catch (error) {
       return rejectWithValue(error.response);
