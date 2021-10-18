@@ -1,8 +1,10 @@
 .list {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   margin-top: -20px;
   margin-left: -20px;
+  max-width: 1200px;
 }
 
 .listItem {
