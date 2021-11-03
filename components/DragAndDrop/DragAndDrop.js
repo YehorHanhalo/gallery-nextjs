@@ -28,25 +28,24 @@ const DragAndDrop = ({ setPageAmount }) => {
             e.preventDefault()
             const files = e.dataTransfer?.files || e.target?.files
 
-            if (!files[0].type.includes('image')) {
-                enqueueSnackbar('load only images', { variant: 'warning' })
-                return
-            }
-            if (files.length > 1) {
-                enqueueSnackbar('load files one by one', {variant: 'info'})
-            }
-
             const options = {
               maxSizeMB: 10,
               maxWidthOrHeight: 600,
               useWebWorker: true
-
             }
 
-            const compressedFile = await imageCompression(files[0], options);
-
             const formData = new FormData()
-            formData.append('photo', compressedFile, compressedFile.name)
+
+            for (const file of files) {
+                if (!file.type.includes('image')) {
+                    enqueueSnackbar('load only images', { variant: 'warning' })
+                    return
+                }
+
+                const compressedFile = await imageCompression(file, options);
+
+                formData.append('photos', compressedFile, compressedFile.name)
+            }
 
             dispatch(postPhoto({ formData, successNotification, setPageAmount }))
         } catch (error) {
@@ -70,6 +69,7 @@ const DragAndDrop = ({ setPageAmount }) => {
             onDrop={e => onDropHandler(e)}
         >
             <input
+                multiple
                 type="file"
                 onChange={e => onDropHandler(e)}
                 accept="image/png, image/jpeg"

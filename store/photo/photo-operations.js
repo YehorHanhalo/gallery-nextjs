@@ -8,8 +8,8 @@ export const fetchPaginatedPhotos = createAsyncThunk(
         const { data } = await API.getAllPhotos(page);
         setPageAmount && setPageAmount(data.pages)
         return data.photos;
-    } catch (error) {
-      return rejectWithValue(error.response);
+    } catch ({ response: { data, status }}) {
+      return rejectWithValue({ data, status });
     }
   }
 )
@@ -21,8 +21,8 @@ export const postPhoto = createAsyncThunk(
       await API.postPhoto(formData)
       successNotification()
       setPageAmount(prev => prev + 1)
-    } catch (error) {
-      return rejectWithValue(error.response);
+    } catch ({ response: { data, status }}) {
+      return rejectWithValue({ data, status });
     }
   }
 )
@@ -33,8 +33,8 @@ export const deleteAllPhotos = createAsyncThunk(
     try {
       await API.deleteAllPhotos()
       successNotification()
-    } catch (error) {
-      return rejectWithValue(error.response);
+    } catch ({ response: { data, status }}) {
+      return rejectWithValue({ data, status });
     }
   }
 )

@@ -23,8 +23,8 @@ const reducerErrorObj = Object.values(operations)
     .reduce((accObj, operation) => {
         const setError = (_, { payload }) => {
             if (payload) {
-                const { status, config, request, statusText } = payload;
-                return `Error ${status}. Can't ${config.method} by ${request.responseURL}. ${statusText}`;
+                const { status, data } = payload;
+                return `Error ${status}. ${data}`;
             }
             return 'Error. No connection with Server';
         };
